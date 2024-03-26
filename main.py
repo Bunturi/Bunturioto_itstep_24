@@ -44,3 +44,16 @@ def worker(task_queue):
 
 # Initialize the queue
 task_queue = Queue()
+
+# Number of threads
+num_threads = 3
+threads = []
+
+# Create threads
+for _ in range(num_threads):
+    thread = threading.Thread(target=worker, args=(task_queue,))
+    thread.start()
+    threads.append(thread)
+
+# Data to be added to the queue
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
