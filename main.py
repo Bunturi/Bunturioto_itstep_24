@@ -1,7 +1,9 @@
 import json
 import threading
+from queue import Queue
+import time
 
-
+# Exercise N1
 # Function to parse JSON data from a file
 def parse_json(filename):
     with open(filename, 'r') as file:
@@ -24,3 +26,21 @@ for filename in filenames:
 # Wait for each thread to complete its task before proceeding
 for thread in threads:
     thread.join()
+
+
+# Exercise N2
+
+# Function that represents a worker thread
+def worker(task_queue):
+    while True:
+        num = task_queue.get()
+
+        if num is None:
+            break
+
+        print(f"Thread {threading.current_thread().name} got value: {num}, is even: {num % 2 == 0}")
+        time.sleep(1)
+        task_queue.task_done()
+
+# Initialize the queue
+task_queue = Queue()
