@@ -20,3 +20,7 @@ for filename in filenames:
     thread = threading.Thread(target=parse_json, args=(filename,))
     threads.append(thread)
     thread.start()
+
+# Wait for each thread to complete its task before proceeding
+for thread in threads:
+    thread.join()
