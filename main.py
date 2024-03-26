@@ -57,3 +57,11 @@ for _ in range(num_threads):
 
 # Data to be added to the queue
 data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+# Add data to the queue
+for item in data:
+    task_queue.put(item)
+
+# Wait for all tasks in the queue to be processed
+task_queue.join()
