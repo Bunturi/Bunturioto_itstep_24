@@ -65,3 +65,14 @@ for item in data:
 
 # Wait for all tasks in the queue to be processed
 task_queue.join()
+
+
+# Add None to signal the end of tasks
+for _ in range(num_threads):
+    task_queue.put(None)
+
+# Join all threads
+for thread in threads:
+    thread.join()
+
+print("All tasks are completed")
